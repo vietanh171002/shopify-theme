@@ -1,0 +1,64 @@
+<style>
+    .collection-intro{
+        background-size: cover;
+        background-size: 110% 110%;
+        background-position: center center;
+        transition-duration: 0.5s; 
+        height: 100%; 
+        /* width: 100%; */
+        /* height: auto; */
+        position: relative;
+    }
+
+    .collection-intro:hover{
+        background-size: 100% 100%;
+        transition-duration: 0.5s;
+        filter: brightness(0.5);
+    }
+
+    .collection-intro .collection-intro-content{
+        position: absolute;
+        bottom: 0;
+        padding-left: 5%;
+        padding-bottom: 5%;
+    }
+
+    .collection-intro .collection-name,   .collection-hashtag {
+        color: white;
+    }
+
+    .collection-intro .collection-name{
+    font-size: 75px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-top: 5px;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+    }
+
+    
+    /* responsive for collection name */
+    @media only screen and (max-width: 1198px){
+        .collection-intro .collection-name{
+            font-size: 46px;    
+        }
+    }
+    @media only screen and (max-width: 1024px){
+        .collection-intro .collection-name{
+            font-size: 24px;    
+        }
+    }
+    
+</style>
+
+<div class="collection-intro" style="background-image: url({{ background_image_url }})">
+    <div class="collection-intro-content">
+        <div class="collection-hashtag">
+           {{collection_hashtag}}
+        </div>
+        <div class="collection-name">
+            {{collection_name}}
+        </div>
+        {% render 'shop-now-button' %}
+    </div>
+</div>

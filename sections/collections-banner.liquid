@@ -1,0 +1,108 @@
+{% style %}
+    .collections-banner{
+       display: grid; 
+       grid-template-columns: 60vw auto;  
+       gap: 10px; 
+       font-family: 'Montserrat', sans-serif;
+    }
+
+    .collections-banner > div {
+        height: 600px
+    }
+
+    .right-part-of-banner{
+        display: grid; 
+        grid-template-rows: auto auto; 
+        gap: 10px
+    }
+
+    .small-collection-banner-item{
+        /* margin-bottom: 10px */
+        /* height: 300px;  */
+    }
+
+    /* responsive for the layout */
+    @media only screen and (max-width: 766px){
+        .collections-banner{
+        display: block; 
+        }
+        .collections-banner > div {
+            /* width:80vw;  */
+            height: 77.35vw;
+        }
+        .collections-banner > div > div {
+            margin-top: 10px; 
+            /* height: 500px;  */
+            /* width: 100vw;  */
+            height: 77.35vw;
+        }
+
+        .right-part-of-banner{
+        display: block; 
+        /* display: flex; 
+        flex-direction: column */
+        }
+
+        .small-collection-banner-item{
+        /* margin-bottom: 10px */
+        height: 300px; 
+        }
+    }
+
+    /* responsive for collection name */
+    /* @media only screen and (max-width: 1198px){
+        .collection-intro .collection-name{
+            font-size: 46px;    
+        }
+    } */
+
+{% endstyle %}
+
+<div class="collections-banner">
+    {% comment %} <div> {% endcomment %}
+        <div class="collection-banner-item">
+            {% render 'large-collection-intro' with 
+            background_image_url: 'https://mantis-section.myshopify.com/cdn/shop/files/m7-banner-1.progressive.jpg'
+            collection_hashtag: '#woman #hello summer'
+            collection_name: 'HELLO SUMMER'
+            %}
+        </div> 
+    {% comment %} </div> {% endcomment %}
+    <div class= "right-part-of-banner">
+        <div class="small-collection-banner-item" >
+            {% render 'small-collection-intro' with 
+            background_image_url: 'https://mantis-section.myshopify.com/cdn/shop/files/m7-banner-2.progressive.jpg'
+            collection_hashtag: '#man style'
+            collection_name: 'ITALIAN 2018'
+            %}
+        </div>
+        <div class="small-collection-banner-item">
+            {% render 'small-collection-intro' with 
+            background_image_url: 'https://mantis-section.myshopify.com/cdn/shop/files/m7-banner-3.progressive.jpg'
+            collection_hashtag: '#kids fashion'
+            collection_name: 'NEW KIDS'
+            %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Collections banner",
+    "settings": [
+        {
+            "type": "text",
+            "id": "section_title",
+            "label": "Section Title",
+            "default": "Welcome to Our Store"
+        }
+    ], 
+    "presets": [
+        {
+            "name": "Collentions banner"
+        }
+    ]
+
+    
+}
+{% endschema %}

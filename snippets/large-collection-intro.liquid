@@ -1,0 +1,58 @@
+<style>
+    .large-collection-intro{
+        background-size: cover;
+        background-size: 110% 110%;
+        background-position: center center;
+        transition-duration: 0.5s;  
+        height: 100%; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .large-collection-intro:hover{
+        background-color: rgb(23, 22, 22, 0.5);
+        background-size: 100% 100%;
+        transition-duration: 0.5s;
+        filter: brightness(0.5);
+    }
+ 
+    .large-collection-intro .collection-intro-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .large-collection-intro  .collection-name,  .collection-hashtag {
+    color: white;
+    }
+
+    .large-collection-intro .collection-name{
+    font-size: 75px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-top: 5px;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+    }
+    
+</style>
+
+<div class="large-collection-intro" style=" background-image: url({{background_image_url}}) ">
+    <div class="collection-intro-content">
+        <div class="collection-hashtag">
+           {{collection_hashtag}}
+        </div>
+        <div class="collection-name">
+            {{collection_name}}
+        </div>
+        {% render 'shop-now-button' %}
+    </div>
+</div>
+
+
+{% comment %} <div có chỉnh height, width ở cái div này đc k > 
+    <div>
+        đây là div được set background image
+    </div>
+</div> {% endcomment %}
