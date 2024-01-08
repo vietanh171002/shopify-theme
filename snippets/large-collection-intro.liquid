@@ -1,20 +1,27 @@
 <style>
     .large-collection-intro{
-        background-size: cover;
-        background-size: 110% 110%;
-        background-position: center center;
-        transition-duration: 0.5s;  
         height: 100%; 
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
+        overflow: hidden;
     }
 
-    .large-collection-intro:hover{
-        background-color: rgb(23, 22, 22, 0.5);
-        background-size: 100% 100%;
+    .large-collection-intro > img{
+        position: absolute; 
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        transform: scale(1.1);
         transition-duration: 0.5s;
+    }
+
+    .large-collection-intro:hover > img{
+        transform: scale(1);
         filter: brightness(0.5);
+        transition-duration: 0.5s;
+
     }
  
     .large-collection-intro .collection-intro-content{
@@ -35,10 +42,23 @@
     letter-spacing: 5px;
     margin-bottom: 10px;
     }
-    
+
+     /* responsive for collection name */
+     @media only screen and (max-width: 1198px){
+        .large-collection-intro .collection-name{
+            font-size: 46px;    
+        }
+    }
+    @media only screen and (max-width: 1024px){
+        .large-collection-intro .collection-name{
+            font-size: 24px;    
+        }
+    }
+        
 </style>
 
-<div class="large-collection-intro" style=" background-image: url({{background_image_url}}) ">
+<div class="large-collection-intro">
+    <img src="{{background_image_url | img_url: 'master'}}" alt="">
     <div class="collection-intro-content">
         <div class="collection-hashtag">
            {{collection_hashtag}}
@@ -46,13 +66,10 @@
         <div class="collection-name">
             {{collection_name}}
         </div>
-        {% render 'shop-now-button' %}
+        {% render 'shop-now-button' with
+            button_name: {{button_name}},
+            button_url: {{button_url}}
+        %}
     </div>
 </div>
 
-
-{% comment %} <div có chỉnh height, width ở cái div này đc k > 
-    <div>
-        đây là div được set background image
-    </div>
-</div> {% endcomment %}

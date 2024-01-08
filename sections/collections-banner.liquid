@@ -7,7 +7,7 @@
     }
 
     .collections-banner > div {
-        height: 600px
+        height: 44.93vw;
     }
 
     .right-part-of-banner{
@@ -16,45 +16,30 @@
         gap: 10px
     }
 
-    .small-collection-banner-item{
-        /* margin-bottom: 10px */
-        /* height: 300px;  */
-    }
-
     /* responsive for the layout */
     @media only screen and (max-width: 766px){
         .collections-banner{
         display: block; 
         }
-        .collections-banner > div {
-            /* width:80vw;  */
-            height: 77.35vw;
+        
+        .collections-banner .collection-banner-item{
+            height: 74.4vw;
         }
-        .collections-banner > div > div {
+
+
+        .collections-banner > div {
+            height: auto;       
+        }
+        
+        .collections-banner .small-collection-banner-item{
             margin-top: 10px; 
-            /* height: 500px;  */
-            /* width: 100vw;  */
-            height: 77.35vw;
+            height: 59.3vw;
         }
 
         .right-part-of-banner{
-        display: block; 
-        /* display: flex; 
-        flex-direction: column */
-        }
-
-        .small-collection-banner-item{
-        /* margin-bottom: 10px */
-        height: 300px; 
+            display: block; 
         }
     }
-
-    /* responsive for collection name */
-    /* @media only screen and (max-width: 1198px){
-        .collection-intro .collection-name{
-            font-size: 46px;    
-        }
-    } */
 
 {% endstyle %}
 
@@ -62,41 +47,119 @@
     {% comment %} <div> {% endcomment %}
         <div class="collection-banner-item">
             {% render 'large-collection-intro' with 
-            background_image_url: 'https://mantis-section.myshopify.com/cdn/shop/files/m7-banner-1.progressive.jpg'
-            collection_hashtag: '#woman #hello summer'
-            collection_name: 'HELLO SUMMER'
+            background_image_url: section.settings.collection1_image,
+            collection_hashtag: section.settings.collection1_hashtag,
+            collection_name: section.settings.collection1_name,
+            button_name: section.settings.collection1_button,
+            button_url: section.settings.collection1_button_url
             %}
         </div> 
     {% comment %} </div> {% endcomment %}
     <div class= "right-part-of-banner">
         <div class="small-collection-banner-item" >
             {% render 'small-collection-intro' with 
-            background_image_url: 'https://mantis-section.myshopify.com/cdn/shop/files/m7-banner-2.progressive.jpg'
-            collection_hashtag: '#man style'
-            collection_name: 'ITALIAN 2018'
+            background_image_url: section.settings.collection2_image,
+            collection_hashtag: section.settings.collection2_hashtag,
+            collection_name: section.settings.collection2_name,
+            button_name: section.settings.collection2_button,
+            button_url: section.settings.collection2_button_url
             %}
-        </div>
+        </div> 
         <div class="small-collection-banner-item">
             {% render 'small-collection-intro' with 
-            background_image_url: 'https://mantis-section.myshopify.com/cdn/shop/files/m7-banner-3.progressive.jpg'
-            collection_hashtag: '#kids fashion'
-            collection_name: 'NEW KIDS'
+            background_image_url: section.settings.collection3_image,
+            collection_hashtag: section.settings.collection3_hashtag,
+            collection_name: section.settings.collection3_name,
+            button_name: section.settings.collection3_button,
+            button_url: section.settings.collection3_button_url
             %}
         </div>
     </div>
+    
 </div>
 
 {% schema %}
 {
     "name": "Collections banner",
-    "settings": [
+    "settings": [   
+        {
+            "type": "image_picker",
+            "id": "collection1_image",
+            "label": "Collection 1 image"
+        },
         {
             "type": "text",
-            "id": "section_title",
-            "label": "Section Title",
-            "default": "Welcome to Our Store"
-        }
+            "id": "collection1_hashtag",
+            "label": "Collection 1 tag"
+        },
+        {
+            "type": "text",
+            "id": "collection1_name",
+            "label": "Collection 1 name"
+        },
+        {
+            "type": "text",
+            "id": "collection1_button",
+            "label": "Collection 1 button"
+        },
+        {
+            "type": "url",
+            "id": "collection1_button_url",
+            "label": "Collection 1 button URL"
+        },
+
+        {
+        "type": "image_picker",
+        "id": "collection2_image",
+            "label": "Collection 2 image"
+        },
+        {
+            "type": "text",
+            "id": "collection2_hashtag",
+            "label": "Collection 2 tag"
+        },
+        {
+            "type": "text",
+            "id": "collection2_name",
+            "label": "Collection 2 name"
+        },
+        {
+            "type": "text",
+            "id": "collection2_button",
+            "label": "Collection 2 button"
+        },
+        {
+            "type": "url",
+            "id": "collection2_button_url",
+            "label": "Collection 2 button URL"
+        },
+        {
+        "type": "image_picker",
+        "id": "collection3_image",
+        "label": "Collection 3 image"
+    },
+    {
+        "type": "text",
+        "id": "collection3_hashtag",
+        "label": "Collection 3 tag"
+    },
+    {
+        "type": "text",
+        "id": "collection3_name",
+        "label": "Collection 3 name"
+    },
+    {
+        "type": "text",
+        "id": "collection3_button",
+        "label": "Collection 3 button"
+    },
+    {
+        "type": "url",
+        "id": "collection3_button_url",
+        "label": "Collection 3 button URL"
+    }
     ], 
+    
     "presets": [
         {
             "name": "Collentions banner"

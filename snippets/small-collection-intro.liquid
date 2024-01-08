@@ -1,19 +1,24 @@
 <style>
     .collection-intro{
-        background-size: cover;
-        background-size: 110% 110%;
-        background-position: center center;
-        transition-duration: 0.5s; 
         height: 100%; 
-        /* width: 100%; */
-        /* height: auto; */
         position: relative;
+        overflow: hidden;
     }
 
-    .collection-intro:hover{
-        background-size: 100% 100%;
-        transition-duration: 0.5s;
+    .collection-intro > img {
+        width: 100%; 
+        height: 100%;
+        position: absolute;
+        transform: scale(1.1);
+        transition-duration: 0.5s; 
+        z-index: -1;
+    }
+
+    .collection-intro:hover > img {
+        transform: scale(1);
+        transition-duration: 0.5s; 
         filter: brightness(0.5);
+
     }
 
     .collection-intro .collection-intro-content{
@@ -51,7 +56,9 @@
     
 </style>
 
-<div class="collection-intro" style="background-image: url({{ background_image_url }})">
+{% comment %} <div class="collection-intro" style="background-image: url({{ background_image_url }})"> {% endcomment %}
+<div class="collection-intro" >
+    <img src="{{ background_image_url | img_url: 'master'}}" alt="">
     <div class="collection-intro-content">
         <div class="collection-hashtag">
            {{collection_hashtag}}
@@ -59,6 +66,9 @@
         <div class="collection-name">
             {{collection_name}}
         </div>
-        {% render 'shop-now-button' %}
+        {% render 'shop-now-button' with
+            button_name: {{button_name}},
+            button_url: {{button_url}}
+        %}
     </div>
 </div>
