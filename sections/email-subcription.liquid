@@ -1,0 +1,94 @@
+
+{% style %}
+    .email-subcription{
+        background-image: url("https://mantis-section.myshopify.com/cdn/shop/files/m7-bg-2_1920x.progressive.jpg"); 
+        height: 265px; 
+        color: white; 
+        background-size: cover; 
+        display: grid; 
+        grid-template-columns: 30vw auto; 
+        gap: 100px; 
+        padding: 0 100px; 
+    }
+
+    .email-subcription .text-part, .input-part{
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+    }
+
+    .input-part{
+        /* height: 85px; 
+        border: 1px solid white;  */
+        position: relative; 
+        font-family: Montserrat, "Helvetica Neue"; 
+        font-size: 16px; 
+        
+    }
+
+    .input-part .input-text{
+        /* display: block;  */
+        width: 100%; 
+        height: 85px; 
+        border: 1px solid #fff; 
+        background-color: rgba(1, 1, 1, 0 );
+        position: absolute; 
+        text-decoration: none; 
+        padding-left: 30px; 
+        padding-right: 140px; 
+        outline: none; 
+        box-shadow: none;
+        font-family: Montserrat, "Helvetica Neue"; 
+        font-size: 16px; 
+    }
+
+    .input-part .subcribe-button{
+        position: absolute; 
+        right: 30px; 
+    }
+
+    .text-part .big-text, .small-text{
+        margin: 0; 
+    }
+
+    .text-part .small-text{
+        font-family: Montserrat, "Helvetica Neue"; 
+        font-size: 14px; 
+    }
+
+    .text-part .big-text{
+        font-family: "Playfair Display"; 
+        font-size: 36px; 
+        color: white; 
+    }
+
+
+
+
+{% endstyle %}
+
+<div class="email-subcription">
+    <div class="text-part">
+        <h2 class="big-text" >Join Our Newsletter</h2>
+        <p class="small-text">Get off 20% for your next purchase!</p>
+    </div>
+    <div class="input-part">
+        <input type="email" class="input-text" placeholder="Enter your email address..." style="color: white">
+        <a href="" class="subcribe-button" style="color: white">SUBCRIBE</a>
+    </div>
+
+</div>
+
+{% schema %}
+{
+    "name": "Email subcription",
+    "settings": [
+        
+        ], 
+    "presets": [
+        {
+            "name": "Email subcripttion"
+        }
+    ]
+}
+{% endschema %}
