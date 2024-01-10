@@ -1,14 +1,15 @@
 
 {% style %}
     .email-subcription{
-        background-image: url("https://mantis-section.myshopify.com/cdn/shop/files/m7-bg-2_1920x.progressive.jpg"); 
+        background-image: url("{{section.settings.background_image |  image_url: width: 1380 }}" ); 
         height: 265px; 
         color: white; 
         background-size: cover; 
         display: grid; 
         grid-template-columns: 30vw auto; 
-        gap: 100px; 
+        gap: 50px; 
         padding: 0 100px; 
+        /* background-color: red */
     }
 
     .email-subcription .text-part, .input-part{
@@ -42,13 +43,24 @@
         font-size: 16px; 
     }
 
+    .input-part .input-text::placeholder{
+        color: white; 
+    }
+
     .input-part .subcribe-button{
         position: absolute; 
         right: 30px; 
+        background-color: transparent; 
+        border: 0; 
+        font-family: Montserrat, "Helvetica Neue"; 
+        font-size: 16px; 
+        font-weight: 600; 
+        cursor: pointer; 
+
     }
 
     .text-part .big-text, .small-text{
-        margin: 0; 
+        margin: 0 0 10px 0; 
     }
 
     .text-part .small-text{
@@ -62,6 +74,21 @@
         color: white; 
     }
 
+    @media (max-width: 1024px){
+        .email-subcription{
+            padding: 0 20px; 
+        }
+    }
+
+    @media (max-width: 768px ){
+        .email-subcription{
+            display: flex;
+            flex-direction: column;  
+            height: 350px; 
+            padding-top: 60px ; 
+        }
+    }
+
 
 
 
@@ -69,12 +96,12 @@
 
 <div class="email-subcription">
     <div class="text-part">
-        <h2 class="big-text" >Join Our Newsletter</h2>
-        <p class="small-text">Get off 20% for your next purchase!</p>
+        <h2 class="big-text" >{{section.settings.large_text}}</h2>
+        <p class="small-text">{{section.settings.small_text}}</p>
     </div>
     <div class="input-part">
         <input type="email" class="input-text" placeholder="Enter your email address..." style="color: white">
-        <a href="" class="subcribe-button" style="color: white">SUBCRIBE</a>
+        <button class="subcribe-button" style="color: white">SUBSCRIBE</button>
     </div>
 
 </div>
@@ -83,8 +110,24 @@
 {
     "name": "Email subcription",
     "settings": [
-        
-        ], 
+        {
+            "type": "image_picker", 
+            "id": "background_image",
+            "label": "Background image"
+        },
+        {
+            "type": "text", 
+            "id": "large_text", 
+            "label": "Large text",
+            "default": "Join Our Newsletter"
+        },
+        {
+            "type": "text", 
+            "id": "small_text", 
+            "label": "Small text",
+            "default" : "Get off 20% for your next purchase!"
+        }
+    ], 
     "presets": [
         {
             "name": "Email subcripttion"

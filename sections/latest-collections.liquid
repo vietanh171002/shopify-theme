@@ -1,0 +1,30 @@
+<style>
+    .latest-collections .collections-cards{
+        display: flex; 
+        flex-direction: row;
+        justify-content: space-around;
+    }
+</style>
+
+<div class="latest-collections">
+    <h2 class="heading">Latest Collections</h2>
+    <div class="collection-cards">
+        {% render 'collection-card' %}
+        {% render 'collection-card' %}
+        {% render 'collection-card' %}
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Latest collections",
+    "settings": [
+        
+    ],
+    "presets": [
+        {
+            "name": "Latest collections"
+        }
+    ]
+}
+{% endschema %}

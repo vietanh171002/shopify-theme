@@ -1,0 +1,130 @@
+<style>
+    .review-section-container{
+        overflow: hidden;
+        position: relative;
+    }
+
+    .review-section{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .review-section-container .padding-right, .padding-left{
+        width: 120px;
+        height: 100%;
+        position: absolute;
+        background-color: rgb(249, 249, 249);
+        z-index: 2;
+    }
+
+    .review-section-container .padding-right{
+        right: 0; 
+    }
+
+    .review-section-container .padding-left{
+        left: 0; 
+    }
+
+    @media (max-width: 768px){
+        .review-section-container .padding-right, .padding-left{
+            display: none;
+        }
+    }
+</style>
+
+    <div class="review-section-container" >
+        <span class="padding-left"></span>
+        <span class="padding-right"></span>
+        <div class="review-section" id="movableDiv">
+            {% render 'review-card',
+                avatar_url: 'https://mantis-section.myshopify.com/cdn/shop/files/m7-client1_65x65.jpg?v=1613558136',
+                review: 'Phasellus ut felis odio. Fusce hendrerit, ex ac finibus pulvinar, 
+                tortor felis egestas turpis, id pellentesque ligula risus vel sem.
+                 Nullam ut nunc a magna varius varius.',
+                reviewer: 'Ophelia Conner',
+                role: 'Customer'
+            %}
+            {% render 'review-card',
+                avatar_url: 'https://mantis-section.myshopify.com/cdn/shop/files/m7-client2_65x65.jpg?v=1613558137',
+                review: 'Phasellus ut felis odio. Fusce hendrerit, ex ac finibus pulvinar, 
+                tortor felis egestas turpis, id pellentesque ligula risus vel sem.
+                 Nullam ut nunc a magna varius varius.',
+                reviewer: 'Kevin de Bruyne',
+                role: 'Customer'
+            %}
+            {% render 'review-card',
+                avatar_url: 'https://mantis-section.myshopify.com/cdn/shop/files/m7-client2_65x65.jpg?v=1613558137',
+                review: 'Phasellus ut felis odio. Fusce hendrerit, ex ac finibus pulvinar, 
+                tortor felis egestas turpis, id pellentesque ligula risus vel sem.
+                 Nullam ut nunc a magna varius varius.',
+                reviewer: 'Kevin de Bruyne',
+                role: 'Customer'
+            %}
+            {% render 'review-card',
+                avatar_url: 'https://mantis-section.myshopify.com/cdn/shop/files/m7-client2_65x65.jpg?v=1613558137',
+                review: 'Phasellus ut felis odio. Fusce hendrerit, ex ac finibus pulvinar, 
+                tortor felis egestas turpis, id pellentesque ligula risus vel sem.
+                 Nullam ut nunc a magna varius varius.',
+                reviewer: 'Kevin de Bruyne',
+                role: 'Customer'
+            %}
+        </div>
+    </div>
+
+<script>
+    const movableDiv = document.getElementById('movableDiv');
+    let isDragging = false;
+    let offsetX, initialX;
+    let xBefore, xAfter; // Declare xBefore outside of the mouse down event listener
+    let currentPage = 0 ; 
+
+    // Event listener for mouse down
+    movableDiv.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        movableDiv.style.transitionDuration = '0s';
+        offsetX = e.clientX - movableDiv.getBoundingClientRect().left;
+        xBefore = e.clientX; // Update xBefore here
+    });
+
+    // Event listener for mouse move
+    document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            const newX = e.clientX - offsetX;
+            movableDiv.style.transform = `translateX(${newX}px)`;
+        }
+    });
+
+    // Event listener for mouse up
+    document.addEventListener('mouseup', (e) => {
+        if (isDragging) {
+            isDragging = false;
+            movableDiv.style.transitionDuration = '0.7s';
+            movableDiv.style.pointerEvents = 'none'; 
+            setTimeout(()=>{
+                movableDiv.style.pointerEvents = 'auto';    
+            }, 700);
+            xAfter = e.clientX;
+            if ((xBefore - xAfter) > 0.3 * window.innerWidth) {
+                currentPage -= 1; 
+            } else if((xAfter - xBefore) > 0.3 * window.innerWidth){
+                // movableDiv.style.transform = `translateX(${initialX + 100}vw)`
+                currentPage += 1; 
+            }
+            movableDiv.style.transform = `translateX(${currentPage*100}vw)`; 
+        }
+    });
+</script>
+
+{% schema %}
+{
+    "name": "Review section",
+    "settings": [
+        
+    ],
+    "presets": [
+        {
+            "name": "Review section"
+        }
+    ]
+}
+{% endschema %}
