@@ -1,0 +1,108 @@
+<style> 
+    .blog-section{
+        background-color: #F9F9F9;
+        padding: 0 100px; 
+    }
+
+    .blog-section h2{
+        font-family: 'Montserrat', sans-serif;
+        font-size: 36px;
+        font-weight: 700;
+        color: rgb(74, 65, 65);
+        margin-bottom: 42px;
+        text-align: center;
+    }
+
+    .blog-section .blog-posts{
+        display: grid;
+        grid-template-columns: repeat({{section.settings.number_columns}}, 1fr);
+        gap: 30px;
+    }
+
+    @media (max-width: 968px){
+        .blog-section .blog-posts{
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+ 
+    @media (max-width: 658px){
+        .blog-section{
+            padding: 0 40px; 
+        }
+        .blog-section .blog-posts{
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+ 
+
+</style>
+
+
+<div class="blog-section">
+    <h2 class="heading">
+        {{section.settings.heading}}
+    </h2>
+    <div class="blog-posts">
+        {% for article in section.settings.blog.articles limit: section.settings.number_blog_posts %}
+            <script>
+                count++; 
+            </script>
+            <div class="blog-item-wrapper">
+                {% render 'blog-item' with
+                    article_url: article.url,
+                    image_url: article.image.src,
+                    author: article.author,
+                    created_at: article.created_at, 
+                    title: article.title, 
+                    content: article.content,
+                %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    let count = 0; 
+</script>
+
+{% schema %}
+{
+    "name": "Blog section",
+    "settings": [
+        {
+            "type": "inline_richtext",
+            "id": "heading",
+            "label": "Heading"
+        },
+        {
+            "type": "blog",
+            "id": "blog",
+            "label": "Blog"
+        }, 
+        {
+            "type": "range",
+            "id": "number_blog_posts",
+            "label": "Number of blog posts to show",
+            "min": 1, 
+            "max": 4,
+            "step": 1, 
+            "default": 3
+        },
+        {
+            "type": "range",
+            "id": "number_columns",
+            "label": "Number of columns on desktop",
+            "min": 1, 
+            "max": 4,
+            "step": 1, 
+            "default": 3
+        }
+    ],
+
+    "presets": [
+        {
+            "name": "Blog section"
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,85 @@
+<style>
+    .blog-item{
+        width: 100%;
+        background-color: #FFFFFF;
+    }
+
+    .blog-item > *{
+        display: block;
+    }
+
+    .blog-item img{
+        width: 100%;
+        aspect-ratio: 220/146.66;
+        cursor: pointer;
+    }
+
+    .blog-item .blog-item-info{
+        padding: 25px 30px; 
+    }
+
+    .blog-item .author-and-date, .content{
+        color: rgb(152, 152, 152); 
+        font-size: 12px; 
+        font-family: Montserrat,Helvetica Neue,Arial,sans-serif;
+    }
+
+    .blog-item .title{
+        margin: 8px 0 20px 0 ; 
+    }
+
+    .blog-item .title a, .read-more-link{
+        color: rgb(74, 65, 65);
+        text-decoration: none;
+    }
+    .blog-item .title a:hover, .read-more-link:hover{
+        color: rgb(163, 139, 94);
+    }
+
+    .blog-item .title a {
+        font-family: 'Playfair Display', serif;
+        font-size: 24px;
+    }
+
+    .blog-item .read-more-link{
+        font-size: 12.5px;
+        font-family: Montserrat,Helvetica Neue,Arial,sans-serif;
+    }
+
+    .blog-item .content{
+        margin-bottom: 15px;
+        max-height: 87px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+  
+</style>
+
+<div class="blog-item">
+    <img src="{{image_url |  image_url: width: 1380 }}" alt="" onclick="redirectToUrl('{{article_url}}')">
+    <div class="blog-item-info">
+        <div class="author-and-date">
+            <span>by {{author}}</span>,<span>{{created_at | date: '%B %d, %Y'}}</span>
+        </div>
+        <h3 class="title">
+            <a href="{{article_url}}" class="blog-link" > 
+                {{title}}
+            </a>
+        </h3>
+        <div class="content">
+            {{content}}
+        </div>
+        <div class="read-more">
+            <a href="{{article_url}}" class="read-more-link">
+                Read more
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+<script>
+    const redirectToUrl = (url) => {
+        window.location.href(url)
+    } 
+</script>
