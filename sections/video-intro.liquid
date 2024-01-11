@@ -103,10 +103,16 @@
 
 </script>
 
+{% liquid
+    assign video_id = section.settings.video.id 
+    assign loop = '&loop=1&playlist=' | append: video_id
+%}
+
 <div class="video-intro">
     <h2 class="heading">{{section.settings.heading}}</h2>
     <div class="icon" ><i class="fa fa-play-circle" onclick="openModal()"></i></div>
-    
+    <div>{{section.settings.video.id}}</div>
+    <div>https://player.vimeo.com/video/{{ secion.settings.video.id }}</div>
 </div>
 
 <div class="video-player-of-video-intro" id="videoModal">
@@ -117,10 +123,11 @@
         <!-- Replace "YOUR_VIDEO_URL" with the actual video URL -->
         {% comment %} <iframe width="100%" height="100%" src="{{section.settings.video |  asset_url}}" frameborder="0"
          allowfullscreen ></iframe> {% endcomment %}
-         <video width="100%" height="100%" controls class="video-tag-for-intro-video">
-            <source src="{{section.settings.video.sources.url}}" type="video/mp4">
-        </video>
-        <div>{{section.settings.video.sources.url}}</div>
+        <video width="100%" height="100%" controls class="video-tag-for-intro-video">
+            {% comment %} <source src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1{{ loop }}" type="video/mp4"> {% endcomment %}
+            <source src="https://cdn.shopify.com/videos/c/vp/2921d058a15a46209dd94907f7fda703/2921d058a15a46209dd94907f7fda703.HD-720p-4.5Mbps-22908881.mp4" type="video/mp4">
+        </video> 
+        {% comment %} <iframe src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1{{ loop }}" type="video/mp4" frameborder="0"></iframe> {% endcomment %}
     </div>
    
 </div>

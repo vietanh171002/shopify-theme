@@ -1,29 +1,116 @@
 <style>
-    .latest-collections .collections-cards{
-        display: flex; 
+        .latest-collections{
+            margin: 0 12px;
+        }
+        .latest-collections .heading{
+            text-align: center;
+        }
+        .latest-collections .collection-cards{
+        display: flex;  
         flex-direction: row;
         justify-content: space-around;
-    }
+        }
+
+        .latest-collections h2{
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: rgb(74, 65, 65);
+            margin-bottom: 42px;
+        }
+
+        .latest-collections .collection-card-wrapper{
+            width:calc(100%/{{section.blocks.size}} - 60px/{{section.blocks.size}});
+        }
+        /* .latest-collections .collection-card-wrapper{
+            width:calc(100%/{{section.settings.collection_list_valix.count}} - 60px/{{section.settings.collection_list_valix.count}});
+        } */
+
+        @media (max-width: 767px){
+            .latest-collections{
+                margin: 0 15px;
+            }
+            .latest-collections .collection-cards{
+                display: block;  
+            }
+
+            .latest-collections .collection-card-wrapper{
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
 </style>
 
-<div class="latest-collections">
-    <h2 class="heading">Latest Collections</h2>
+<div class="latest-collections">    
+    <h2 class="heading">{{section.settings.heading}}</h2>
     <div class="collection-cards">
-        {% render 'collection-card' %}
-        {% render 'collection-card' %}
-        {% render 'collection-card' %}
+         {% for block in section.blocks %}
+            <div class="collection-card-wrapper" onclick="redirectToURL('{{block.settings.collection.url}}')">
+                {% render 'collection-card' with
+                    collection_image_url: {{block.settings.collection.image.src }},
+                    collection_name: {{block.settings.collection.title}}
+                %}
+            </div>
+        {% endfor %}
+        {% comment %} {% for collection in section.settings.collection_list_valix %}
+            <div class="collection-card-wrapper" onclick="redirectToURL('{{collection.url}}')">
+                {% render 'collection-card' with
+                    collection_image_url: {{collection.image.src }},
+                    collection_name: {{collection.title}}
+                %}
+            </div>
+        {% endfor %} {% endcomment %}
+        
     </div>
+    <div>{{section.settings.collection.src}}</div>
 </div>
+
+<script>
+  function redirectToURL(url) {
+    window.location.href = url;
+  }
+</script>
 
 {% schema %}
 {
     "name": "Latest collections",
     "settings": [
-        
+        {
+            "type": "inline_richtext",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Latest Collections"
+        }
+        // {
+        //     "type": "collection_list",
+        //     "id": "collection_list_valix",
+        //     "label": "Collection list"
+        // }
+    ],
+    
+    "max_blocks": 4,
+    "blocks": [
+        {
+            "name": "Collection",
+            "type": "collection",    
+            "settings": [
+                {
+                    "type": "collection",
+                    "id": "collection",
+                    "label": "Collection"
+                }
+            ]
+        }
     ],
     "presets": [
         {
-            "name": "Latest collections"
+            "name": "Latest collections",
+            "blocks": [
+                {
+                    // "name":"Collection",
+                    "type": "collection"
+                }
+            ]
         }
     ]
 }

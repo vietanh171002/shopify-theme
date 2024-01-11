@@ -1,4 +1,53 @@
+<style>
+    .collection-card{
+        position: relative;
+        width: 100%;
+        aspect-ratio: 3.5/4  ;
+        overflow: hidden;
+    }
+
+    .collection-card *{
+        transition-duration: 0.5s;
+
+    }
+    .collection-card img{
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        transform: scale(1.1);
+    }
+
+    .collection-card .name-button{
+        position: absolute;
+        left: 50%;
+        bottom: 0px; 
+        transform: translateX(-50%);
+        color: black;
+        padding: 21px 35px;
+        background-color: white;
+        color: black;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 600;
+        font-family: 'Montserrat', sans-serif;
+        opacity: 0;
+    }
+
+    .collection-card:hover img{
+        cursor: pointer;
+        transform: scale(1);
+        filter: brightness(0.5);
+    }
+
+    .collection-card:hover .name-button{
+        bottom: 40px;
+        opacity: 1;
+    }
+    
+    
+</style>
+
 <div class="collection-card">
-    <img src="https://mantis-section.myshopify.com/cdn/shop/files/m3-banner-1.progressive.jpg" alt="">
-    <a href="" class="button"></a>
+    <img src="{{collection_image_url |  image_url: width: 1024  }}" alt="">
+    <a href="" class="name-button">{{collection_name}}</a>
 </div>
