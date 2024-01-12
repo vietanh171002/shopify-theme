@@ -63,6 +63,15 @@
         "heading": "Latest Collections"
       }
     },
+    "blog_section_9x6JYV": {
+      "type": "blog-section",
+      "settings": {
+        "heading": "Fashion Blog",
+        "blog": "news",
+        "number_blog_posts": 3,
+        "number_columns": 3
+      }
+    },
     "e1478907-38dd-4a3f-ad31-4262813e3fc0": {
       "type": "email-subcription",
       "settings": {
@@ -77,6 +86,7 @@
     "c1d649e1-39d5-4c61-acc9-4d502e3e003c",
     "e880f8c9-c764-4859-8b17-eb00cdf3755a",
     "latest_collections_R9emKm",
+    "blog_section_9x6JYV",
     "e1478907-38dd-4a3f-ad31-4262813e3fc0"
   ]
 }

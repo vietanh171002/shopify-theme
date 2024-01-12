@@ -21,7 +21,7 @@
 
     @media (max-width: 968px){
         .blog-section .blog-posts{
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(min(2,{{section.settings.number_columns}}), 1fr);
         }
     }
  

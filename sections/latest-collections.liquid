@@ -52,15 +52,7 @@
                 %}
             </div>
         {% endfor %}
-        {% comment %} {% for collection in section.settings.collection_list_valix %}
-            <div class="collection-card-wrapper" onclick="redirectToURL('{{collection.url}}')">
-                {% render 'collection-card' with
-                    collection_image_url: {{collection.image.src }},
-                    collection_name: {{collection.title}}
-                %}
-            </div>
-        {% endfor %} {% endcomment %}
-        
+
     </div>
     <div>{{section.settings.collection.src}}</div>
 </div>

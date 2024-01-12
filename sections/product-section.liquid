@@ -1,0 +1,143 @@
+<style>
+    .product-section .collection-name-list{
+        text-align: center;
+        font-weight: 600;
+        font-size: 30px;
+        margin-bottom: 30px;
+        font-family: 'Montserrat', sans-serif;
+        color: #cdcdcd;
+    }
+
+    .product-section .collection-name{
+        padding: 0 30px; 
+        cursor: pointer;
+        white-space: nowrap;
+    }
+
+    .product-section .collection-name:hover{
+        color: #4a4141;
+    }
+
+    .product-section .product-grid{
+        display: grid;
+        grid-template-columns: repeat({{section.settings.number_columns}} ,1fr);
+        gap: 20px;
+        padding: 0 30px
+    }
+
+    @media (max-width: 1024px){
+        .product-section .product-grid{
+            grid-template-columns: repeat(min(3,{{section.settings.number_columns}}) ,1fr);
+        }
+    }
+    @media (max-width: 768px){
+        .product-section .product-grid{
+            grid-template-columns: repeat(min(2,{{section.settings.number_columns}}) ,1fr);
+        }
+    }
+    @media (max-width: 425px){
+        .product-section .product-grid{
+            grid-template-columns: repeat(1,1fr);
+        }
+    }
+</style>
+
+<div class="product-section">
+    <div class="collection-name-list">
+        {% for block in section.blocks %}
+            <span class="collection-name" id="{{block.settings.collection.id}}"
+            onclick="setCollection(this.id)"
+            >
+                {{block.settings.collection.title}}
+            </span>
+        {% endfor %}
+    </div>
+    {% comment %} <div class="product-grid"> {% endcomment %}
+        {% for block in section.blocks %}
+            <div class="product-grid" id="{{block.settings.collection.id}}2">
+                {% for product in block.settings.collection.products limit: section.settings.number_products %}
+                        {% render 'product-card' with
+                            product_image_1_url:{{product.images[0].src}},
+                            product_image_2_url:{{product.images[1].src}},
+                            pruduct_title: {{product.title}},
+                            product_price: {{product.price}}
+                        %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setCollection({{section.blocks[0].settings.collection.id}})
+    });
+
+    const setCollection = (id) => {
+        console.log('check'); 
+        let collectionElements = document.getElementsByClassName('collection-name');
+
+        for (let i = 0; i < collectionElements.length; i++) {
+            collectionElements[i].style.color = '#cdcdcd';
+        }
+
+        document.getElementById(id).style.color = '#4a4141'; 
+
+        let productGrids = document.getElementsByClassName('product-grid'); 
+
+        for(let i = 0; i < productGrids.length; i++){
+            productGrids[i].style.display = 'none'; 
+        }
+
+        document.getElementById(id+'2').style.display = 'grid'; 
+    }
+</script>
+
+{% schema %}
+{
+    "name": "Product section",
+    "settings": [
+        {
+            "type": "range",
+            "id": "number_products",
+            "label": "Number of products to show",
+            "min": 3, 
+            "max": 20,
+            "step": 1, 
+            "default": 8
+        },
+        {
+            "type": "range",
+            "id": "number_columns",
+            "label": "Number of columns on desktop",
+            "min": 1, 
+            "max": 4,
+            "step": 1, 
+            "default": 4
+        }
+    ],
+    "max_blocks": 4,
+    "blocks": [
+        {
+            "name": "Collection",
+            "type": "collection",    
+            "settings": [
+                {
+                    "type": "collection",
+                    "id": "collection",
+                    "label": "Collection"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Product section",
+            "blocks": [
+                {
+                    "type": "collection"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
