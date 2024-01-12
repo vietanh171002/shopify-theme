@@ -30,7 +30,7 @@
         align-items: center;
     }
 
-    .large-collection-intro  .collection-name,  .collection-hashtag {
+    .large-collection-intro .collection-hashtag {
     color: white;
     }
 
@@ -41,6 +41,7 @@
     margin-top: 5px;
     letter-spacing: 5px;
     margin-bottom: 10px;
+    color: white;
     }
 
      /* responsive for collection name */
@@ -63,7 +64,7 @@
         <div class="collection-hashtag">
            {{collection_hashtag}}
         </div>
-        <div class="collection-name">
+        <div class="collection-name"> 
             {{collection_name}}
         </div>
         {% render 'shop-now-button' with

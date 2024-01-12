@@ -20,6 +20,38 @@
         "collection3_button_url": ""
       }
     },
+    "product_section_98xAr3": {
+      "type": "product-section",
+      "blocks": {
+        "collection_ixFQWa": {
+          "type": "collection",
+          "settings": {
+            "collection": "new-arrival"
+          }
+        },
+        "collection_pACMRq": {
+          "type": "collection",
+          "settings": {
+            "collection": "top-sale"
+          }
+        },
+        "collection_zq8haH": {
+          "type": "collection",
+          "settings": {
+            "collection": "featured"
+          }
+        }
+      },
+      "block_order": [
+        "collection_ixFQWa",
+        "collection_pACMRq",
+        "collection_zq8haH"
+      ],
+      "settings": {
+        "number_products": 8,
+        "number_columns": 4
+      }
+    },
     "c1d649e1-39d5-4c61-acc9-4d502e3e003c": {
       "type": "review-section",
       "settings": {
@@ -83,6 +115,7 @@
   },
   "order": [
     "c3d26e82-5357-481c-87d9-350724a52035",
+    "product_section_98xAr3",
     "c1d649e1-39d5-4c61-acc9-4d502e3e003c",
     "e880f8c9-c764-4859-8b17-eb00cdf3755a",
     "latest_collections_R9emKm",

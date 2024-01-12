@@ -6,15 +6,22 @@
        font-family: 'Montserrat', sans-serif;
     }
 
-    .collections-banner > div {
+    .collections-banner .collection-banner-item {
         height: 44.93vw;
+        cursor: pointer
     }
 
-    .right-part-of-banner{
+    .collections-banner .right-part-of-banner{
         display: grid; 
         grid-template-rows: auto auto; 
         gap: 10px
     }
+
+    .collections-banner .small-collection-banner-item {
+        cursor: pointer
+    }
+
+
 
     /* responsive for the layout */
     @media only screen and (max-width: 766px){
@@ -31,7 +38,7 @@
             height: auto;       
         }
         
-        .collections-banner .small-collection-banner-item{
+        .collections-banner .right-part-of-banner .small-collection-banner-item{
             margin-top: 10px; 
             height: 59.3vw;
         }
@@ -65,7 +72,7 @@
             button_url: section.settings.collection2_button_url
             %}
         </div> 
-        <div class="small-collection-banner-item">
+        <div class="small-collection-banner-item" >
             {% render 'small-collection-intro' with 
             background_image_url: section.settings.collection3_image,
             collection_hashtag: section.settings.collection3_hashtag,
