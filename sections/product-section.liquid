@@ -30,6 +30,24 @@
         padding: 0 30px
     }
 
+    .product-section .view-all-products{
+        display: flex;
+        justify-content: center;
+        margin-top: 15px
+    }
+
+    .product-section .view-all-products a{
+        font-style: 14px;
+        font-family: Montserrat,Helvetica Neue,Arial,sans-serif;
+        color: #4a4141;
+    }
+
+    .product-section .view-all-products a:hover{
+        color: rgb(163, 139, 94)
+    }
+
+
+
     @media (max-width: 1024px){
         .product-section .product-grid{
             grid-template-columns: repeat(min(3,{{section.settings.number_columns}}) ,1fr);
@@ -57,19 +75,21 @@
             </span>
         {% endfor %}
     </div>
-    {% comment %} <div class="product-grid"> {% endcomment %}
-        {% for block in section.blocks %}
-            <div class="product-grid" id="{{block.settings.collection.id}}2">
-                {% for product in block.settings.collection.products limit: section.settings.number_products %}
-                        {% render 'product-card' with
-                            product_image_1_url:{{product.images[0].src}},
-                            product_image_2_url:{{product.images[1].src}},
-                            pruduct_title: {{product.title}},
-                            product_price: {{product.price}}
-                        %}
-                {% endfor %}
-            </div>
-        {% endfor %}
+    {% for block in section.blocks %}
+        <div class="product-grid" id="{{block.settings.collection.id}}2">
+            {% for product in block.settings.collection.products limit: section.settings.number_products %}
+                    {% render 'product-card' with
+                        product_image_1_url:{{product.images[0].src}},
+                        product_image_2_url:{{product.images[1].src}},
+                        pruduct_title: {{product.title}},
+                        product_price: {{product.price}}
+                    %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+    <div class="view-all-products">
+        <a href="/collections/all">View all products</a>
+    </div>
 </div>
 
 <script>
