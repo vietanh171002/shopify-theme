@@ -1,15 +1,21 @@
 
-{% style %}
-    .email-subcription{
+<style>
+    .email-subcription {
         background-image: url("{{section.settings.background_image |  image_url: width: 1380 }}" ); 
+        background-size: cover; 
+        display: flex; 
+        justify-content: center; 
+
+    }
+
+    .email-subcription .content-part {
         height: 265px; 
         color: white; 
-        background-size: cover; 
         display: grid; 
-        grid-template-columns: 30vw auto; 
-        gap: 50px; 
-        padding: 0 100px; 
-        /* background-color: red */
+        grid-template-columns: 30% auto; 
+        gap: 100px; 
+        width: 100%; 
+        max-width: 1200px; 
     }
 
     .email-subcription .text-part, .input-part{
@@ -28,7 +34,7 @@
     }
 
     .input-part .input-text{
-        /* display: block;  */
+        
         width: 100%; 
         height: 85px; 
         border: 1px solid #fff; 
@@ -72,6 +78,13 @@
         font-family: "Playfair Display"; 
         font-size: 36px; 
         color: white; 
+        font-weight: 700;
+    }
+
+    @media (max-width: 1280px){
+        .email-subcription{
+            padding: 0 50px; 
+        }
     }
 
     @media (max-width: 1024px){
@@ -81,27 +94,34 @@
     }
 
     @media (max-width: 768px ){
-        .email-subcription{
+        .email-subcription .content-part{
             display: flex;
             flex-direction: column;  
+            justify-content: center; 
             height: 350px; 
-            padding-top: 60px ; 
+            /* padding-top: 60px ;  */
+        }
+
+        .email-subcription .input-part .input-text, .subcribe-button{
+            transform: translateY(-50px); 
         }
     }
 
 
 
 
-{% endstyle %}
+</style>
 
 <div class="email-subcription">
-    <div class="text-part">
-        <h2 class="big-text" >{{section.settings.large_text}}</h2>
-        <p class="small-text">{{section.settings.small_text}}</p>
-    </div>
-    <div class="input-part">
-        <input type="email" class="input-text" placeholder="Enter your email address..." style="color: white">
-        <button class="subcribe-button" style="color: white">SUBSCRIBE</button>
+    <div class="content-part">
+        <div class="text-part">
+            <h2 class="big-text" >{{section.settings.large_text}}</h2>
+            <p class="small-text">{{section.settings.small_text}}</p>
+        </div>
+        <div class="input-part">
+            <input type="email" class="input-text" placeholder="Enter your email address..." style="color: white">
+            <button class="subcribe-button" style="color: white">SUBSCRIBE</button>
+        </div>
     </div>
 
 </div>

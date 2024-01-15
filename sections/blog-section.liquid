@@ -1,10 +1,14 @@
 <style> 
     .blog-section{
         background-color: #F9F9F9;
-        padding-left: 100px; 
-        padding-right: 100px; 
+        padding-left: 15px; 
+        padding-right: 15px; 
         padding-top: {{section.settings.padding_top}}px ;
         padding-bottom:{{section.settings.padding_bottom}}px ;
+
+        max-width: 1200px;
+        margin: 0 auto; 
+        
     }
 
     .blog-section h2{
@@ -22,9 +26,16 @@
         gap: 30px;
     }
 
-    @media (max-width: 968px){
+    @media (max-width: 1199px){
+        .blog-section{
+            max-width: 970px;
+        }
+    }
+
+    @media (max-width: 969px){
         .blog-section .blog-posts{
             grid-template-columns: repeat(min(2,{{section.settings.number_columns}}), 1fr);
+            padding: 0 50px; 
         }
     }
  
