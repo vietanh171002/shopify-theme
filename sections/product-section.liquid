@@ -79,17 +79,20 @@
         <div class="product-grid" id="{{block.settings.collection.id}}2">
             {% for product in block.settings.collection.products limit: section.settings.number_products %}
                     {% render 'product-card' with
-                        product_image_1_url:{{product.images[0].src}},
-                        product_image_2_url:{{product.images[1].src}},
-                        pruduct_title: {{product.title}},
-                        product_price: {{product.price}}
+                        product: product,
+                        show_quickView: sections.settings.show_quickView,
+                        show_addToCart: sections.settings.show_addToCart,
+                        show_addToWishlist: sections.settings.show_addToWishlist
                     %}
             {% endfor %}
         </div>
     {% endfor %}
-    <div class="view-all-products">
+    
+    {% if section.settings.show_viewAllProducts %}
+        <div class="view-all-products">
         <a href="/collections/all">View all products</a>
     </div>
+    {% endif %}
 </div>
 
 <script>
@@ -157,6 +160,30 @@
             "unit": "px",
             "label": "Padding bottom",
             "default": 28
+        },
+        // {
+        //     "type": "checkbox",
+        //     "id": "show_quickView",
+        //     "label": "Show quick view",
+        //     "default": true
+        // },
+        // {
+        //     "type": "checkbox",
+        //     "id": "show_addToCart",
+        //     "label": "Show Add to wishlist",
+        //     "default": true
+        // },
+        // {
+        //     "type": "checkbox",
+        //     "id": "show_addToWishlist",
+        //     "label": "Show Add to wishlist",
+        //     "default": true
+        // },
+        {
+            "type": "checkbox",
+            "id": "show_viewAllProducts",
+            "label": "Show View all products",
+            "default": true
         }
     ],
     "max_blocks": 4,

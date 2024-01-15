@@ -78,24 +78,28 @@
 </style>
 
 
-<div class="product-card">
-    <div class="product-image">
-        {% render 'icon-tooltip-set' %}
-        <img src="{{product_image_1_url |  image_url: width: 1380 }}" alt="" class="image-1">
-        <img src="{{product_image_2_url |  image_url: width: 1380 }}" alt="" class="image-2">
+<div class="product-card">  
+    <div class="product-image" onclick="redirectToUrl('{{product.url}}')">
+        {% render 'icon-tooltip-set' with
+            show_quickView: show_quickView,
+            show_addToCart: show_addToCart,
+            show_addToWishlist: show_addToWishlist
+        %}
+        <img src="{{product.images[0].src |  image_url: width: 1380 }}" alt="" class="image-1">
+        <img src="{{product.images[1].src |  image_url: width: 1380 }}" alt="" class="image-2">
     </div>
     <div class="product-info">
-        <div class="product-name">
-            {{pruduct_title}}
+        <div class="product-name" onclick="redirectToUrl('{{product.url}}')">
+            {{product.title}}
         </div>
         <div class="product-price">
-            {{product_price |  money}}
+            {{product.price |  money}}
         </div>
     </div>
-    {% if true %}
-        {% comment %} <span class="label-new" style="background-color: #1c1c1c;">New</span> {% endcomment %}
+    {% if product.tags contains 'New' %}
+        <span class="label-new" style="background-color: #1c1c1c;">New</span>
     {% endif %}
-    {% if true %}
-        {% comment %} <span class="label-hot" style="background-color:  #d64343; top: 100px">Hot</span> {% endcomment %}
+    {% if product.tags contains 'Hot' %}
+        <span class="label-hot" style="background-color:  #d64343">Hot</span>
     {% endif %}
 </div>
