@@ -1,0 +1,341 @@
+<style>
+    .new-footer {
+        display: grid;
+        grid-template-columns: auto repeat({{section.blocks.size}},180px) auto;
+        background-color: rgb(255, 255, 255);
+        padding-left: 29px; 
+        padding-right: 29px; 
+        padding-top: {{section.settings.padding_top}}px;
+        /* position: relative; */
+    }
+
+    .new-footer .shop-info {
+        padding-right: 30px;
+    }   
+
+    .new-footer .shop-info > img{
+        width: 150px;
+        margin-bottom: 12px;
+    }   
+
+    .new-footer .shop-info > P {
+        margin: 0;
+        font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
+        font-size: 12px;
+        color: rgb(152, 152, 152);
+        cursor: pointer;
+    }
+
+    .new-footer .shop-info > p:hover {
+        color: rgb(163, 139, 94);
+    }
+
+    .new-footer .shop-info > a {
+        display: block;
+        margin: 30px 0;
+        color: rgb(74, 65, 65);
+        font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
+        font-size: 12px;
+    }
+
+    .new-footer .email-subcription-part{
+        padding-left: 0px;
+    }
+
+    .new-footer .email-subcription-part .heading{
+        font-size: 12px;
+        font-family: Montserrat, "Helvetica Neue", Arial;
+        font-weight: 700;
+        margin: 0;
+        margin-bottom: 25px;
+    }
+
+    .new-footer .email-subcription-part .input-part{
+        /* display: block; */
+        position: relative; 
+        font-family: Montserrat, "Helvetica Neue"; 
+        font-size: 16px; 
+    }
+
+    .new-footer .email-subcription-part .input-part > *{
+       background-color: transparent;
+    }
+
+    .new-footer .email-subcription-part .input-part .input-text-area, .input-text-area::placeholder{
+        /* box-sizing: content-box; */
+        box-shadow: none;
+        border: none;
+        outline: none;
+        color: rgb(152, 152, 152);
+        width: 100%; 
+        border-bottom: 0.73px solid rgb(231, 231, 231);
+        padding: 5px 100px 5px 0; 
+        height: 42px;
+        /* margin-right: 29px; */
+    }
+
+    .new-footer .email-subcription-part .input-part .subcribe-button{
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        color: rgb(38, 38, 38);
+        border: 0;
+        font-size: 12px;
+        font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
+        cursor: pointer;
+        font-weight: 700;
+    }
+
+    .contact-copyright-payment {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 29px {{section.settings.padding_bottom}}px 29px;
+    }
+
+    .contact-copyright-payment * {
+        font-size: 12px;
+        color: rgb(152, 152, 152) ;
+    }
+
+    .contact-copyright-payment .contact > i {
+        margin-right: 20px;
+    }
+
+    .contact-copyright-payment .contact > i:hover {
+        color: rgb(163, 139, 94);
+    }
+
+    .contact-copyright-payment .copyright{
+        font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    @media (min-width: 1440px){
+        .new-footer .email-subcription-part{
+        padding-left: 50px;
+        }
+    }
+
+    @media (min-width: 1640px){
+        .new-footer,.contact-copyright-payment{
+            padding-left: 80px;
+            padding-right: 80px;
+        }
+        .new-footer .email-subcription-part {
+        padding-left: 150px;
+        }
+    }
+
+    @media (max-width: 1219px) {
+        .new-footer{
+            grid-template-columns: auto auto;
+            row-gap: 20px;
+        }
+        .new-footer .email-subcription-part {
+            max-width: 450px;
+        }
+    }
+
+    @media (max-width: 550px) {
+        .new-footer{
+            grid-template-columns: auto;
+        }
+    }
+
+    @media (max-width: 780px) {
+        .contact-copyright-payment{
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-copyright-payment > * {
+            padding-bottom: 10px;
+        }
+    }
+
+
+    
+</style>
+
+<div class="new-footer">
+    <div class="shop-info">
+        <img src="{{section.settings.logo |  image_url : width: 500 }}" alt="">
+        <p class="phone-number">{{section.settings.phone_number}}</p>
+        <p class="email">{{section.settings.email}}</p>
+        <p class="address">{{section.settings.address}}</p>
+        <a href="{{section.settings.address_url}}" class="map-link">Google maps</a>
+    </div>
+    {% for block in section.blocks %}
+        <div class="menu-item-wrapper">
+            {% render 'menu-item' with 
+                menu: block.settings.menu
+            %}
+        </div>
+    {% endfor %}
+    <div class="email-subcription-part">
+        <h3 class="heading">
+            JOIN OUR NEWSLETTER & GET 20% OFF
+        </h3>
+        <div class="input-part">
+            <input type="email" class="input-text-area" placeholder="Enter your email address..." >
+            <button class="subcribe-button" >SUBMIT</button>
+        </div>
+    </div>
+</div>
+
+<div class="contact-copyright-payment">
+    <span class="contact">
+        {% if section.settings.show_facebookContact %}
+            <i class="fa-brands fa-facebook-f"></i>
+        {% endif %}
+        {% if section.settings.show_twitterContact %}
+            <i class="fa-brands fa-twitter"></i>
+        {% endif %}
+        
+        {% if section.settings.show_pinterestContact %}
+            <i class="fa-brands fa-pinterest"></i>
+        {% endif %}
+        
+        {% if section.settings.show_instagramContact %}
+            <i class="fa-brands fa-instagram"></i>
+        {% endif %}
+        
+        {% if section.settings.show_behanceContact %}
+            <i class="fa-brands fa-behance"></i>
+        {% endif %}
+    </span>
+    <span class="copyright">
+        © 2018 Mantis All rights reserved
+    </span>
+    <img src="https://mantis-section.myshopify.com/cdn/shop/files/payments.png" alt="">
+</div>
+
+{% schema %}
+{
+    "name": "New footer",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Shop logo"
+        },
+        {
+            "type": "text",
+            "id": "phone_number",
+            "label": "Phone number"
+        },
+        {
+            "type": "text",
+            "id": "email",
+            "label": "Email"
+        },
+        {
+            "type": "text",
+            "id": "address",
+            "label": "Address"
+        },
+        {
+            "type": "url",
+            "id": "address_url",
+            "label": "Address URL"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_facebookContact",
+            "label": "Show Facebook contact",
+            "default": true
+        },
+        {
+            "type": "url",
+            "id": "facebook_url",
+            "label": "Facebook URL"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_twitterContact",
+            "label": "Show Twitter contact",
+            "default": true
+        },
+        {
+            "type": "url",
+            "id": "twitter_url",
+            "label": "Twitter URL"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_pinterestContact",
+            "label": "Show Pinterest contact",    
+            "default": true
+        },
+        {
+            "type": "url",
+            "id": "pinterest_url",
+            "label": "Pinterest URL"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_instagramContact",
+            "label": "Show Instagram contact",
+            "default": true
+        },
+        {
+            "type": "url",
+            "id": "instagram_url",
+            "label": "Instagram URL"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_behanceContact",
+            "label": "Show Behance contact",
+            "default": true
+        },
+        {
+            "type": "url",
+            "id": "behance_url",
+            "label": "Behance URL"
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "min": 0,
+            "max": 100,
+            "step": 4,
+            "unit": "px",
+            "label": "Padding top",
+            "default": 48
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 100,
+            "step": 4,
+            "unit": "px",
+            "label": "Padding bottom",
+            "default": 20
+        }
+
+    ],
+    "max_blocks": 4,
+    "blocks": [
+        {
+            "name": "Menu",
+            "type": "menu",
+            "settings": [
+                {
+                    "type": "link_list",
+                    "id": "menu",
+                    "label": "Menu"
+                }
+            ]
+        
+            
+        }
+    ],
+    "presets": [
+        {
+            "name": "New footer"
+        }
+    ]   
+}
+{% endschema %}

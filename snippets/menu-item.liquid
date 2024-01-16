@@ -1,0 +1,41 @@
+<style>
+    .menu-item *{
+        margin: 0 ;
+        width: 100%;
+    }
+
+    .menu-item .heading{
+        font-size: 12px;
+        font-family: Montserrat, "Helvetica Neue", Arial;
+        font-weight: 700;
+        margin-bottom: 25px;
+    }
+
+    .menu-item .menu-link{
+        font-size: 12px;
+        font-family: Montserrat, "Helvetica Neue", Arial;
+        color: rgb(152, 152, 152);
+        margin-bottom: 12px;
+        cursor: pointer;
+    }
+
+    .menu-item .menu-link:hover{
+        color: rgb(163, 139, 94);
+    }
+
+</style>
+
+<div class="menu-item">
+    <h3 class="heading">
+        {{menu.title}}
+    </h3>
+    <div class="menu">
+        {% comment %} <p class="menu-link">About us</p>
+        <p class="menu-link">Jobs</p>
+        <p class="menu-link">Press</p>
+        <p class="menu-link">Contact</p>   {% endcomment %}
+        {% for link in menu.links %}
+            <p class="menu-link" onclick="redirectToUrl('{{link.url}}')">{{link.title}}</p>  
+        {% endfor %}  
+    </div>
+</div>

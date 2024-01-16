@@ -51,7 +51,8 @@
         "number_products": 8,
         "number_columns": 4,
         "padding_top": 56,
-        "padding_bottom": 60
+        "padding_bottom": 60,
+        "show_viewAllProducts": true
       }
     },
     "c1d649e1-39d5-4c61-acc9-4d502e3e003c": {
@@ -89,7 +90,8 @@
       "type": "video-intro",
       "settings": {
         "background_image": "shopify:\/\/shop_images\/m7-bg-1_1920x.progressive_8d93bd95-5717-41bc-aa8a-125462c4a717.webp",
-        "heading": "COLOUR CANYON"
+        "heading": "COLOUR CANYON",
+        "video": "shopify:\/\/files\/videos\/Andree Right Hand - Chơi Như Tụi Mỹ _ Official MV - YouTube - Cốc Cốc 2024-01-15 00-49-05.mp4"
       }
     },
     "latest_collections_R9emKm": {
